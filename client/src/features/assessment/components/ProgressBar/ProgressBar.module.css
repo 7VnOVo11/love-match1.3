@@ -1,0 +1,102 @@
+.container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.questionCount {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.current {
+  color: var(--primary-color);
+}
+
+.total {
+  color: var(--text-secondary);
+}
+
+.timeEstimate {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.progressBarWrapper {
+  height: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: calc(var(--spacing-unit));
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), #64b5f6);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progressGlow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  animation: glow 2s infinite;
+}
+
+.progressPercentage {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+@keyframes glow {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(500%);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: calc(var(--spacing-unit)) calc(var(--spacing-unit) * 2);
+  }
+
+  .progressInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(var(--spacing-unit));
+  }
+
+  .questionCount {
+    font-size: 1rem;
+  }
+
+  .timeEstimate {
+    font-size: 0.75rem;
+  }
+} 

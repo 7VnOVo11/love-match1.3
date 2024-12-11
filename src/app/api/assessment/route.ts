@@ -59,7 +59,18 @@ const matchingRules: MatchingRules = {
   }
 };
 
-function calculateMatchScore(questionType: string, self: number, partner: number): number {
+// 定义问题类型的类型
+type QuestionType = 'socialPreference' | 'decisionMaking' | 'lifestyle';
+
+// 修改 getQuestionType 函数
+function getQuestionType(questionId: number): QuestionType {
+  if (questionId <= 2) return 'socialPreference';
+  if (questionId <= 4) return 'decisionMaking';
+  return 'lifestyle';
+}
+
+// 修改 calculateMatchScore 函数的参数类型
+function calculateMatchScore(questionType: QuestionType, self: number, partner: number): number {
   const rules = matchingRules[questionType];
   
   // 检查是否完美匹配
@@ -83,7 +94,7 @@ function calculateDimensionScore(questionIds: number[], selfAnswers: Record<stri
   questionIds.forEach(id => {
     if (selfAnswers[id] !== undefined && partnerAnswers[id] !== undefined) {
       const diff = Math.abs(selfAnswers[id] - partnerAnswers[id]);
-      // 计算每个问题的分数
+      // 计算每个问题���分数
       const questionScore = calculateMatchScore(
         getQuestionType(id),
         selfAnswers[id],
@@ -95,12 +106,6 @@ function calculateDimensionScore(questionIds: number[], selfAnswers: Record<stri
   });
 
   return count > 0 ? Math.round(totalScore / count) : 0;
-}
-
-function getQuestionType(questionId: number): string {
-  if (questionId <= 2) return 'socialPreference';
-  if (questionId <= 4) return 'decisionMaking';
-  return 'lifestyle';
 }
 
 function calculateTotalScore(selfAnswers: Record<string, number>, partnerAnswers: Record<string, number>): number {
@@ -189,7 +194,7 @@ function getPersonalityDescription(selfAnswers: Record<string, number>, partnerA
   const score = calculateDimensionScore([1, 2], selfAnswers, partnerAnswers)
   if (score >= 90) return '你们的性格特征高度互补，能够在关系中相互成长。'
   if (score >= 75) return '你们的性格有一些差异，但这些差异可以带来互补效应。'
-  if (score >= 60) return '���们的性格差异明显，需要更多的理解和包容。'
+  if (score >= 60) return '你们的性格差异明显，需要更多的理解和包容。'
   return '你们的性格差异较大，建议多沟通以增进理解。'
 }
 
@@ -197,7 +202,7 @@ function getLifestyleDescription(selfAnswers: Record<string, number>, partnerAns
   const score = calculateDimensionScore([3, 4], selfAnswers, partnerAnswers)
   if (score >= 90) return '你们的生活习惯非常契合，有助于建立稳定的日常生活。'
   if (score >= 75) return '你们的生活习惯基本相似，偶尔的差异可以互相调整。'
-  if (score >= 60) return '你们的生活习惯存在一定差异，需要相互体谅和适应。'
+  if (score >= 60) return '你们的生活习惯存在一定差异，需要相互体谅和适��。'
   return '你们的生活习惯差异较大，需要共同努力找到平衡点。'
 }
 
@@ -276,7 +281,7 @@ function analyzeSocialDynamics(self: number, partner: number): DynamicsAnalysis 
     return {
       type: 'harmony',
       description: '你们有着相似的社交需求',
-      strength: '能够很好地理解对方的��交需求',
+      strength: '能够很好地理解对方的社交需求',
       challenge: '可能需要注意拓展社交圈子'
     };
   }

@@ -202,7 +202,7 @@ function getLifestyleDescription(selfAnswers: Record<string, number>, partnerAns
   const score = calculateDimensionScore([3, 4], selfAnswers, partnerAnswers)
   if (score >= 90) return '你们的生活习惯非常契合，有助于建立稳定的日常生活。'
   if (score >= 75) return '你们的生活习惯基本相似，偶尔的差异可以互相调整。'
-  if (score >= 60) return '你们的生活习惯存在一定差异，需要相互体谅和适��。'
+  if (score >= 60) return '你们的生活习惯存在一定差异，需要相互体谅和适应。'
   return '你们的生活习惯差异较大，需要共同努力找到平衡点。'
 }
 
@@ -370,7 +370,7 @@ function determinePattern(analysis: any) {
     return '挑战较大型';
   }
   
-  return '潜力成长型';
+  return '需要共同努力型';
 }
 
 function getPotentialLevel(score: number): string {
@@ -381,8 +381,25 @@ function getPotentialLevel(score: number): string {
   return '面临较大挑战';
 }
 
+// 定义建议类型
+type DimensionKey = '性格匹配度' | '生活习惯契合度' | '沟通方式相容度';
+
+interface Suggestions {
+  [key: string]: string;
+}
+
+const suggestions: Suggestions = {
+  '性格匹配度': '建议多了解对方的性格特点，学会欣赏彼此的不同。',
+  '生活习惯契合度': '可以尝试制定共同的生活计划，逐步调整彼此的习惯。',
+  '沟通方式相容度': '建议多进行深入交流，理解对方的表达方式和沟通需求。'
+};
+
+function getSuggestion(dimension: string, score: number): string {
+  return suggestions[dimension] || '建议多沟通交流增进相互理解。';
+}
+
 function generateDetails(selfAnswers: Record<string, number>, partnerAnswers: Record<string, number>) {
-  const dimensions = calculateDimensions(selfAnswers, partnerAnswers)
+  const dimensions = calculateDimensions(selfAnswers, partnerAnswers);
   
   return {
     strengths: dimensions
@@ -397,15 +414,5 @@ function generateDetails(selfAnswers: Record<string, number>, partnerAnswers: Re
         area: dim.name.replace('度', ''),
         suggestion: getSuggestion(dim.name, dim.score)
       }))
-  }
-}
-
-function getSuggestion(dimension: string, score: number): string {
-  const suggestions = {
-    '性格匹配度': '建议多了解对方的性格特点，学会欣赏彼此的不同。',
-    '生活习惯契合度': '可以尝试制定共同的生活计划，逐步调整彼此的习惯。',
-    '沟通方式相容度': '建议多进行深入交流，理解对方的表达方式和沟通需求。'
-  }
-  
-  return suggestions[dimension] || '建议多沟通交流增进相互理解。'
+  };
 }

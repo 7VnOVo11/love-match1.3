@@ -1,6 +1,3 @@
 {
-  "version": 2,
-  "env": {
-    "NEXT_PUBLIC_BASE_URL": "https://你的域名"
-  }
+  "version": 2
 } 

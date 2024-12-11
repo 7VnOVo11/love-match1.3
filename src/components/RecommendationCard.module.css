@@ -1,0 +1,36 @@
+.card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.strength {
+  background: rgba(48, 209, 88, 0.1);
+}
+
+.challenge {
+  background: rgba(255, 159, 10, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.content {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+} 

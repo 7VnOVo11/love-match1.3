@@ -1,0 +1,117 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--spacing-unit) * 4);
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.content {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.illustration {
+  font-size: 8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), #64b5f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: calc(var(--spacing-unit) * 4);
+  animation: float 6s ease-in-out infinite;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.description {
+  color: var(--text-secondary);
+  margin-bottom: calc(var(--spacing-unit) * 6);
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: calc(var(--spacing-unit) * 2);
+  justify-content: center;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primaryButton {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.primaryButton:hover {
+  background: #1557b0;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.secondaryButton:hover {
+  background: rgba(26, 115, 232, 0.1);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: calc(var(--spacing-unit) * 2);
+  }
+
+  .illustration {
+    font-size: 6rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+} 

@@ -1,0 +1,146 @@
+.container {
+  padding: calc(var(--spacing-unit) * 4) 0;
+}
+
+.questionHeader {
+  margin-bottom: calc(var(--spacing-unit) * 6);
+  text-align: center;
+}
+
+.dimension {
+  display: inline-block;
+  padding: calc(var(--spacing-unit)) calc(var(--spacing-unit) * 2);
+  background: rgba(26, 115, 232, 0.1);
+  color: var(--primary-color);
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.title {
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  line-height: 1.4;
+}
+
+.description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 2);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.option {
+  position: relative;
+  width: 100%;
+  padding: calc(var(--spacing-unit) * 3);
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  text-align: left;
+}
+
+.option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.optionContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.radioOuter {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.radioInner {
+  width: 10px;
+  height: 10px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.optionText {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.selected {
+  border-color: var(--primary-color);
+}
+
+.selected .radioOuter {
+  border-color: var(--primary-color);
+}
+
+.selected .radioInner {
+  transform: scale(1);
+}
+
+.selectionEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 115, 232, 0.1),
+    rgba(26, 115, 232, 0.05)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.selected .selectionEffect {
+  opacity: 1;
+}
+
+.requiredHint {
+  margin-top: calc(var(--spacing-unit) * 3);
+  color: #d32f2f;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: calc(var(--spacing-unit) * 3) 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .option {
+    padding: calc(var(--spacing-unit) * 2);
+  }
+} 

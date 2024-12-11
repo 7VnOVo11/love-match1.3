@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #1a73e8;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --background-light: #f8f9fa;
+  --spacing-unit: 8px;
+}
+
+body {
+  color: var(--text-primary);
+  background: #ffffff;
+} 

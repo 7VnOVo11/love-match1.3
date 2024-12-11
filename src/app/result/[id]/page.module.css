@@ -1,0 +1,114 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.score {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.scoreNumber {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.scoreLabel {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.dimension {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dimensionScore {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 0.5rem 0;
+}
+
+.analysis {
+  margin-bottom: 3rem;
+}
+
+.potential {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(var(--primary-color-rgb), 0.1);
+  border-radius: 8px;
+}
+
+.suggestions {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.suggestions li {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.strength {
+  background: rgba(48, 209, 88, 0.1);
+}
+
+.challenge {
+  background: rgba(255, 159, 10, 0.1);
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #ff3b30;
+}
+
+.shareSection {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.shareSection h2 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.shareSection p {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+} 

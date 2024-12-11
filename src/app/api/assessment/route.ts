@@ -31,45 +31,31 @@ interface AssessmentResult {
   };
 }
 
-// 定义答案组合的匹配规则
-const matchingRules = {
+// 定义匹配规则类型
+interface MatchRule {
+  perfectMatch: number[][];
+  goodMatch: number[][];
+}
+
+interface MatchingRules {
+  socialPreference: MatchRule;
+  decisionMaking: MatchRule;
+  lifestyle: MatchRule;
+  [key: string]: MatchRule;  // 添加索引签名
+}
+
+const matchingRules: MatchingRules = {
   socialPreference: {
-    // 社交偏好匹配规则
-    perfectMatch: [
-      [1, 1], // 都喜欢大型社交
-      [2, 2], // 都喜欢小型聚会
-      [1, 2], // 一个外向一个内向，互补
-      [2, 1]  // 互补
-    ],
-    goodMatch: [
-      [2, 3], // 小型聚会和共同兴趣活动
-      [3, 2]
-    ],
-    // 其他组合视为一般匹配
+    perfectMatch: [[1, 1], [2, 2], [3, 3]],
+    goodMatch: [[1, 2], [2, 1], [2, 3], [3, 2]]
   },
-  
   decisionMaking: {
-    // 决策方式匹配规则
-    perfectMatch: [
-      [1, 2], // 直觉+理性分
-      [2, 1]  // 理性分析+直觉
-    ],
-    goodMatch: [
-      [3, 4], // 征求意见+综合考虑
-      [4, 3]
-    ]
+    perfectMatch: [[1, 1], [2, 2], [3, 3]],
+    goodMatch: [[1, 2], [2, 1], [2, 3], [3, 2]]
   },
-  
   lifestyle: {
-    // 生活方式匹配规则
-    perfectMatch: [
-      [1, 1], // 都喜欢探索
-      [2, 2], // 都喜欢安静
-    ],
-    goodMatch: [
-      [1, 3], // 探索+社交
-      [3, 1]
-    ]
+    perfectMatch: [[1, 1], [2, 2], [3, 3]],
+    goodMatch: [[1, 2], [2, 1], [2, 3], [3, 2]]
   }
 };
 
@@ -83,12 +69,11 @@ function calculateMatchScore(questionType: string, self: number, partner: number
   
   // 检查是否良好匹配
   if (rules.goodMatch.some(match => match[0] === self && match[1] === partner)) {
-    return 85;
+    return 80;
   }
   
-  // 计算差异度
-  const diff = Math.abs(self - partner);
-  return Math.max(60, 100 - diff * 20); // 基础分60分，每点差异扣20分
+  // 其他情况
+  return 60;
 }
 
 function calculateDimensionScore(questionIds: number[], selfAnswers: Record<string, number>, partnerAnswers: Record<string, number>): number {
@@ -204,14 +189,14 @@ function getPersonalityDescription(selfAnswers: Record<string, number>, partnerA
   const score = calculateDimensionScore([1, 2], selfAnswers, partnerAnswers)
   if (score >= 90) return '你们的性格特征高度互补，能够在关系中相互成长。'
   if (score >= 75) return '你们的性格有一些差异，但这些差异可以带来互补效应。'
-  if (score >= 60) return '你们的性格差异明显，需要更多的理解和包容。'
+  if (score >= 60) return '���们的性格差异明显，需要更多的理解和包容。'
   return '你们的性格差异较大，建议多沟通以增进理解。'
 }
 
 function getLifestyleDescription(selfAnswers: Record<string, number>, partnerAnswers: Record<string, number>): string {
   const score = calculateDimensionScore([3, 4], selfAnswers, partnerAnswers)
   if (score >= 90) return '你们的生活习惯非常契合，有助于建立稳定的日常生活。'
-  if (score >= 75) return '你们的生活习惯基本��似，偶尔的差异可以互相调整。'
+  if (score >= 75) return '你们的生活习惯基本相似，偶尔的差异可以互相调整。'
   if (score >= 60) return '你们的生活习惯存在一定差异，需要相互体谅和适应。'
   return '你们的生活习惯差异较大，需要共同努力找到平衡点。'
 }
@@ -291,7 +276,7 @@ function analyzeSocialDynamics(self: number, partner: number): DynamicsAnalysis 
     return {
       type: 'harmony',
       description: '你们有着相似的社交需求',
-      strength: '能够很好地理解对方的社交需求',
+      strength: '能够很好地理解对方的��交需求',
       challenge: '可能需要注意拓展社交圈子'
     };
   }
